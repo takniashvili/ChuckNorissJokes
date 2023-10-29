@@ -1,18 +1,11 @@
 @import 
 url('https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@200;400;600;800&display=swap');
 
-/*
- red: #B22222 Black: #000000 Antique white: #FAEBD7 
-
- Deep Black: #333333 Clean White: #FFFFFF Bold Red: #FF5555 Modern Red,
-
- Charcoal Black: #333333 Pure White: #FFFFFF Vibrant Red: #FF3333 Elegant Red,
-
- Crimson Red: #DC143C Rich Black: #1E1E1E Ivory White: #FFFFF0 High-Contrast Black,
-
- Jet Black: #000000 Pure White: #FFFFFF Electric Red: #FF0000 
- */
+ *{
+  box-sizing: border-box;
+ }
 body{
+  box-sizing: border-box;
   background-color: #B22222;
   font-family: 'Playpen Sans', cursive;
   height: 100%;
@@ -77,6 +70,7 @@ header{
   color: #FFFFFF;
 }
 .main{
+  background-color: #a11e1e;
   width: 70%;
   text-align: center;
   padding: 10px 20px 80px 20px;
