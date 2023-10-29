@@ -32,6 +32,7 @@ header{
 }
 /* search button */
 .searchContainer{
+  box-sizing: border-box;
   padding-top: 35px;
   padding-bottom: 50px;
   display:flex;
@@ -72,12 +73,14 @@ header{
   display: flex;
   justify-content: center;
 }
+.jokeText{
+  color: #FFFFFF;
+}
 .main{
   width: 70%;
   text-align: center;
   padding: 10px 20px 80px 20px;
-  border: 2px solid;
-  border-color: red;
+  border: 2px solid rgba(255, 0, 0, 1);
   border-radius: 14px;
 }
 .container{
