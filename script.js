@@ -11,6 +11,8 @@ const btn = document.getElementById("btn");
 
 const container = document.getElementById("container")
 
+// ================ main jokes
+
 const getApi = async () => {
   await axios
   .get(`${jokesRandom}`)
@@ -38,36 +40,41 @@ const showJokes = (data) => {
 getApi();
  btn.addEventListener(`click`, getApi);
 
-// ============= joke categories
+// ============= joke categories to main text
 
 const getCategories = async () => {
   await axios
-  .get(`${categories}`)
-  .then((res) => {
-    const categoriesData = res.data;
-    console.log(categoriesData);
+    .get(`${categories}`)
+    .then((res) => {
+      const categoriesData = res.data;
 
-        categoriesData.map((category) => {
-          const categoryName = document.createElement("button");
-          categoryName.textContent = category.toUpperCase();
-          categoryName.classList.add("btn");
-          categoryName.classList.add("btn-success");
-          // ? ღილაკზე დაჭერისას კატეგორიის მიხედვით წამოიღოს Random ხუმრობა
-        categoryName.addEventListener("click", async function () {
-            await getApi(category);
-          });
-          header.appendChild(categoryName);
+      categoriesData.map((category) => {
+        const categoryName = document.createElement("button");
+        categoryName.textContent = category.toUpperCase();
+        categoryName.classList.add("btn");
+        categoryName.classList.add("btn-success");
+
+        categoryName.addEventListener("click", async () => {
+          const response = await axios.get(`${jokesRandomCategory}=${category}`);
+          const jokeData = response.data;
+
+          if (jokeData && jokeData.value) {
+            h1.textContent = jokeData.value;
+          }
         });
-   }
-   )
-  .catch((error) => {
-    console.error(`Error: ${error}`);
-  })
+
+        header.appendChild(categoryName);
+      });
+    })
+    .catch((error) => {
+      console.error(`Error: ${error}`);
+    });
 };
+
 
 getCategories();
 
-// ============= search button
+// ============= search joke
 
 let search = document.getElementById("search");
 let btnSearch = document.getElementById("btnSearch");
@@ -83,14 +90,13 @@ const searchJoke = async () => {
     const searchResult = response.data.result;
 
     if (searchResult && searchResult.length > 0) {
-      // Check if the first search result has a longer content
       if (searchResult[0].value.length > 10) {
-        h1.textContent = searchResult[0].value; // Display the first search result in h1
+        h1.textContent = searchResult[0].value; 
       } else {
-        h1.textContent = "No jokes found for your query"; // Display a message if the result is too short
+        h1.textContent = "No jokes found for your query";
       }
     } else {
-      h1.textContent = "No jokes found for your query"; // Display a message if no jokes are found
+      h1.textContent = "No jokes found for your query"; 
     }
   } catch (error) {
     console.error(`Error: ${error}`);
